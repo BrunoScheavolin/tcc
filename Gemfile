@@ -44,12 +44,16 @@ group :development, :test do
   gem "brakeman", require: false
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/
-  gem "standard", ">= 1.35.1"
+  gem "rspec-rails", "~> 7.0.0"
+  gem "rspec-json_expectations"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "standard", ">= 1.35.1"
+  gem "erb-formatter"
+  gem "pry"
 end
 
 group :test do

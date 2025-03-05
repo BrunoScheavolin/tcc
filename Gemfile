@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.0.1"
+gem "rails", "~> 7.2.2", ">= 7.2.2.1"
 
 ruby "3.2.2"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
@@ -46,7 +46,7 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/
   gem "factory_bot_rails"
-  gem "rspec-rails", "~> 7.1.1"
+  gem "rspec-rails", "~> 7.0.0"
   gem "rspec-json_expectations"
 end
 

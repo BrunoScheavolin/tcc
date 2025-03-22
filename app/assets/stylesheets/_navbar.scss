@@ -1,0 +1,43 @@
+.navbar {
+  background: $green;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+
+  .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem; // Espaço entre botão e "Roca Fácil"
+    transition: all 0.3s ease-in-out;
+  }
+
+  .btn-toggle {
+    display: flex;
+    align-items: center;
+  }
+
+  .d-flex {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  // Quando a tela for pequena
+  @media (max-width: 768px) {
+    .user-info,
+    .notifications {
+      display: none;
+    }
+
+    .navbar-brand {
+      margin-left: auto; // Empurra "Roca Fácil" para a direita
+      margin-right: 1rem;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+<h1>Properties</h1>
+<%= link_to "New Property", new_admin_property_path, class: "btn btn-primary" %>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Size</th>
+    <th>User</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @properties.each do |property| %>
+    <tr>
+      <td><%= property.name %></td>
+      <td><%= property.address %></td>
+      <td><%= property.size %></td>
+      <td><%= property.user&.email %></td>
+      <td>
+        <%= link_to "Show", admin_property_path(property) %> |
+        <%= link_to "Edit", edit_admin_property_path(property) %> |
+        <%= button_to "Delete", admin_property_path(property), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

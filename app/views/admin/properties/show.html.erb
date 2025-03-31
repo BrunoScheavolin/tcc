@@ -1,0 +1,7 @@
+<h1><%= @property.name %></h1>
+<p><strong>Address:</strong> <%= @property.address %></p>
+<p><strong>Size:</strong> <%= @property.size %></p>
+<p><strong>User:</strong> <%= @property.user&.email %></p>
+
+<%= link_to "Edit", edit_admin_property_path(@property) %> |
+<%= link_to "Back to List", admin_properties_path %>

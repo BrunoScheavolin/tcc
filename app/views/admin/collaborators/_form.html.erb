@@ -1,0 +1,11 @@
+<%= form_with(model: [:admin, collaborator], class: "row g-3", data: { turbo: false }) do |form| %>
+  <div class="col-12">
+    <%= form.label :user_tag, class: "form-label fw-bold" %>
+    <%= form.text_field :user_tag, class: "form-control" %>
+  </div>
+
+  <div class="col-12 d-flex justify-content-between mt-4">
+    <a href="javascript:history.back()" class="btn btn-secondary">Voltar</a>
+    <%= form.submit "Salvar", class: "btn btn-primary" %>
+  </div>
+<% end %>

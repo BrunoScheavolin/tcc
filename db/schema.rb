@@ -10,18 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_03_001116) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_03_163828) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admin_collaborators", force: :cascade do |t|
+  create_table "collaborators", force: :cascade do |t|
     t.bigint "admin_id", null: false
+    t.string "user_tag", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id", "user_tag"], name: "index_collaborators_on_admin_id_and_user_tag", unique: true
+    t.index ["admin_id"], name: "index_collaborators_on_admin_id"
+  end
+
+  create_table "module_properties", force: :cascade do |t|
+    t.bigint "production_module_id", null: false
+    t.bigint "property_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["production_module_id"], name: "index_module_properties_on_production_module_id"
+    t.index ["property_id"], name: "index_module_properties_on_property_id"
+  end
+
+  create_table "production_modules", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "active", default: false, null: false
+    t.json "settings", default: {}
+    t.integer "module_type", default: 0, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["admin_id", "user_id"], name: "index_admin_collaborators_on_admin_id_and_user_id", unique: true
-    t.index ["admin_id"], name: "index_admin_collaborators_on_admin_id"
-    t.index ["user_id"], name: "index_admin_collaborators_on_user_id"
+    t.index ["user_id"], name: "index_production_modules_on_user_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -32,6 +51,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_03_001116) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_properties_on_user_id"
+  end
+
+  create_table "property_accesses", force: :cascade do |t|
+    t.bigint "property_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_property_accesses_on_property_id"
+    t.index ["user_id"], name: "index_property_accesses_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -51,7 +79,11 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_03_001116) do
     t.index ["tag"], name: "index_users_on_tag", unique: true
   end
 
-  add_foreign_key "admin_collaborators", "users"
-  add_foreign_key "admin_collaborators", "users", column: "admin_id"
+  add_foreign_key "collaborators", "users", column: "admin_id"
+  add_foreign_key "module_properties", "production_modules"
+  add_foreign_key "module_properties", "properties"
+  add_foreign_key "production_modules", "users"
   add_foreign_key "properties", "users"
+  add_foreign_key "property_accesses", "properties"
+  add_foreign_key "property_accesses", "users"
 end

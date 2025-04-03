@@ -1,0 +1,12 @@
+<%= form_with model: module_property, url: admin_module_properties_path, method: :post, data: { turbo: false }, class: "row g-3" do |f| %>
+  <%= f.hidden_field :property_id, value: @property.id %>
+  <div class="col-12">
+    <div>
+      <%= f.select :production_module_id, options_from_collection_for_select(production_modules, :id, :name), { prompt: "Selecione um Módulo" }, class: "form-control" %>
+    </div>
+  </div>
+  <div class="col-12 d-flex justify-content-between mt-4">
+    <a href="javascript:history.back()" class="btn btn-secondary">Voltar</a>
+    <%= f.submit "Salvar", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/", to: "home#index", as: "home"
     resources :properties, expect: %i[create index update destroy new edit show]
+    resources :collaborators, expect: %i[create index destroy new show]
+    resources :property_accesses, only: [:new, :create, :destroy]
+    resources :module_properties, only: [:new, :create, :destroy]
+    resources :production_modules, only: [:new, :create, :destroy, :index, :show]
   end
 
   # Rota de verificação de saúde

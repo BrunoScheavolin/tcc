@@ -2,7 +2,7 @@
 require "fileutils"
 
 APP_ROOT = File.expand_path("..", __dir__)
-APP_NAME = "roca-facil"
+APP_NAME = "campo-mais"
 
 def system!(*args)
   system(*args, exception: true)
